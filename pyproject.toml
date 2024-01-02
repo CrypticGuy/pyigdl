@@ -1,0 +1,24 @@
+[project]
+name = "pyigdl"
+version = "0.0.5"
+authors = [
+  { name="Vasu Goel", email="goelvasu1999@gmail.com" },
+]
+description = "A Python package for downloading Instagram videos, posts, stories, and more. This package provides an unofficial scraping functionality to retrieve content from Instagram, similar to saveig.app and https://github.com/sasmeee/igdl (Node.Js)"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+  "parsel",
+  "brotli",
+  "requests",
+]
+keywords = ["Instagram", "Download", "Reels", "Videos", "Media", "Photos", "Fetch"]
+
+[project.urls]
+Homepage = "https://github.com/crypticguy/pyigdl"
+Issues = "https://github.com/pypa/crypticguy/pyigdl" 
