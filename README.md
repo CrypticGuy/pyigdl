@@ -10,6 +10,8 @@ Coded by: [Vasu Goel](https://crypticguy.github.io)
 pip install pyigdl
 ```
 
+Link to PyPI project: [PYIGDL (Python Instagram Downloader)](https://pypi.org/project/pyigdl/)
+
 ## How to use
 You can use pyigdl as follows
 ```python
