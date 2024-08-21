@@ -1,6 +1,6 @@
 import unittest
 
-from pyigdl import IGDownloader
+from .pyigdl import IGDownloader
 
 class Test(unittest.TestCase):
     def test_execution(self):
