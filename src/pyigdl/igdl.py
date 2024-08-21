@@ -2,7 +2,7 @@ import requests
 import json
 import brotli
 from parsel import Selector
-from utils import extractHtmlContentFromJsResponse
+from .utils import extractHtmlContentFromJsResponse
 
 def _create_headers():
     headers = {"Accept": "*/*", "Accept-Encoding": "gzip, deflate, br, zstd", "Accept-Language": "en-US,en;q=0.9", "Content-Type": "application/x-www-form-urlencoded", "Origin": "https://saveig.app", "Referer": "https://saveig.app/", "Sec-Ch-Ua": '"Not_A Brand";v="8", "Chromium";v="120", "Microsoft Edge";v="120"', "Sec-Ch-Ua-Mobile": "?1", "Sec-Ch-Ua-Platform": '"Android"', "Sec-Fetch-Dest": "empty"}
@@ -27,14 +27,11 @@ def _parseResponse(response):
         parsed_response = response.json()['data']
     
     if not ("download-items" in parsed_response):
-        print('here')
         parsed_response = extractHtmlContentFromJsResponse(parsed_response)
 
     selector = Selector(text=parsed_response)
-    print(selector)
     download_data = []
     for elem in selector.css(".download-items"):
-        print(elem)
         download_data.append({
             "thumbnail_link": elem.css(".download-items__thumb > img").attrib["src"],
             "download_link": elem.css(".download-items__btn > a").attrib["href"]
