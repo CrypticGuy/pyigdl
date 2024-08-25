@@ -32,18 +32,21 @@ def _parseResponse(response):
     selector = Selector(text=parsed_response)
     download_data = []
     for elem in selector.css(".download-items"):
+        thumbnail_selector = elem.css(".download-items__thumb > img")
+        if thumbnail_selector.attrib.get('class', '') == 'lazy':
+            thumbnail_link = thumbnail_selector.attrib['data-src']
+        else:
+            thumbnail_link = thumbnail_selector.attrib['src']
         download_data.append({
-            "thumbnail_link": elem.css(".download-items__thumb > img").attrib["src"],
+            "thumbnail_link": thumbnail_link,
             "download_link": elem.css(".download-items__btn > a").attrib["href"]
         })
-    
     return download_data
 
 def _sendPostRequest(serverUrl, payloadData, headers):
     sess = requests.Session()
     response = sess.post(serverUrl, headers=headers, data=payloadData) # post requests
     resp_json = response.json()
-    # print(resp_json)
     if (resp_json.get("mess")):
         raise Exception(resp_json.get("mess"))
     return _parseResponse(response)
