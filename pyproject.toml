@@ -1,6 +1,6 @@
 [project]
 name = "pyigdl"
-version = "0.0.9"
+version = "0.0.10"
 authors = [
   { name="Vasu Goel", email="goelvasu1999@gmail.com" },
 ]
