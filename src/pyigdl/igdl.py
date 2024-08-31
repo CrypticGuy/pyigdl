@@ -25,10 +25,9 @@ def _parseResponse(response):
         parsed_response = json.loads(parsed_response)['data']
     except Exception as e:
         parsed_response = response.json()['data']
-    
     if not ("download-items" in parsed_response):
         parsed_response = extractHtmlContentFromJsResponse(parsed_response)
-
+    print(parsed_response)
     selector = Selector(text=parsed_response)
     download_data = []
     for elem in selector.css(".download-items"):
@@ -36,7 +35,7 @@ def _parseResponse(response):
         if thumbnail_selector.attrib.get('class', '') == 'lazy':
             thumbnail_link = thumbnail_selector.attrib.get('data-src', "Not found")
         else:
-            thumbnail_link = thumbnail_selector.attrib('src', "Not found")
+            thumbnail_link = thumbnail_selector.attrib.get('src', "Not found")
         download_data.append({
             "thumbnail_link": thumbnail_link,
             "download_link": elem.css(".download-items__btn > a").attrib.get("href", "")
