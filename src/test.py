@@ -12,3 +12,8 @@ class Test(unittest.TestCase):
         url = "https://www.instagram.com/p/C_B03_ry0aK/?"
         resp = IGDownloader(url)
         self.assertEqual(len(resp), 9)
+
+    def test_single_photo_post(self):
+        url = "https://www.instagram.com/p/C-5szP6xjoC"
+        resp = IGDownloader(url)
+        self.assertEqual(len(resp), 1)

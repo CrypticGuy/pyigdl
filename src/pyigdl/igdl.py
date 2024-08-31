@@ -34,12 +34,12 @@ def _parseResponse(response):
     for elem in selector.css(".download-items"):
         thumbnail_selector = elem.css(".download-items__thumb > img")
         if thumbnail_selector.attrib.get('class', '') == 'lazy':
-            thumbnail_link = thumbnail_selector.attrib['data-src']
+            thumbnail_link = thumbnail_selector.attrib.get('data-src', "Not found")
         else:
-            thumbnail_link = thumbnail_selector.attrib['src']
+            thumbnail_link = thumbnail_selector.attrib('src', "Not found")
         download_data.append({
             "thumbnail_link": thumbnail_link,
-            "download_link": elem.css(".download-items__btn > a").attrib["href"]
+            "download_link": elem.css(".download-items__btn > a").attrib.get("href", "")
         })
     return download_data
 
